@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Posttest - Jacobian Virtual Lab</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#333;
+}
+
+header{
+    background:linear-gradient(135deg,#1f2f46,#2c3e50);
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+header h1{
+    font-size:32px;
+}
+
+header span{
+    color:#3498db;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:40px auto;
+}
+
+.quiz-box{
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 8px 18px rgba(0,0,0,0.08);
+}
+
+.title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.title h2{
+    font-size:38px;
+    color:#2c3e50;
+}
+
+.title p{
+    color:#666;
+    margin-top:10px;
+}
+
+.question{
+    background:#f8fbff;
+    padding:25px;
+    border-radius:12px;
+    margin-bottom:25px;
+    border-left:5px solid #3498db;
+}
+
+.question h3{
+    margin-bottom:20px;
+    color:#2c3e50;
+}
+
+.option{
+    margin:12px 0;
+    padding:12px;
+    background:white;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s;
+    border:1px solid #ddd;
+}
+
+.option:hover{
+    background:#eef6ff;
+}
+
+button{
+    display:block;
+    margin:30px auto;
+    padding:15px 40px;
+    border:none;
+    border-radius:10px;
+    background:#3498db;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#217dbb;
+}
+
+.correct{
+    background:#c8f7c5 !important;
+    border:2px solid green;
+}
+
+.wrong{
+    background:#ffd6d6 !important;
+    border:2px solid red;
+}
+
+.score-box{
+    text-align:center;
+    margin-top:30px;
+    font-size:28px;
+    font-weight:bold;
+    color:#2c3e50;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:12px 25px;
+    background:#3498db;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+}
+
+.back-container{
+    text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Virtual <span>Labs</span></h1>
+
+</header>
+
+<div class="container">
+
+<div class="quiz-box">
+
+<div class="title">
+
+<h2>Jacobian Posttest</h2>
+
+<p>
+Advanced Numerical & Theory Questions
+</p>
+
+</div>
+
+<form id="quizForm"></form>
+
+<button onclick="submitQuiz()">
+Submit Test
+</button>
+
+<div class="score-box" id="scoreBox"></div>
+
+<div class="back-container">
+
+<a href="project.html" class="back-btn">
+← Back to Project
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+q:"Find ∂(x²y)/∂x",
+options:["2xy","x²","2x","xy"],
+answer:0
+},
+
+{
+q:"Jacobian is mainly used in:",
+options:["Integration","Differentiation","Transformation","Matrices only"],
+answer:2
+},
+
+{
+q:"Find ∂(sin x)/∂x",
+options:["cos x","-cos x","sin x","tan x"],
+answer:0
+},
+
+{
+q:"If J = 0 then transformation is:",
+options:["Invertible","Singular","Identity","Linear"],
+answer:1
+},
+
+{
+q:"Find ∂(xy²)/∂y",
+options:["2xy","xy","2y","x²"],
+answer:0
+},
+
+{
+q:"Jacobian matrix contains:",
+options:["Integrals","Partial derivatives","Limits","Vectors"],
+answer:1
+},
+
+{
+q:"Find ∂(e^x y)/∂x",
+options:["e^x y","y","e^x","xy"],
+answer:0
+},
+
+{
+q:"Determinant of Jacobian is called:",
+options:["Gradient","Transformation factor","Matrix factor","Laplace"],
+answer:1
+},
+
+{
+q:"Find ∂(x³+y³)/∂x",
+options:["3x²","3y²","x²","y²"],
+answer:0
+},
+
+{
+q:"Jacobian helps in coordinate conversion between:",
+options:["Cartesian & Polar","Only Cartesian","Only Polar","Vectors"],
+answer:0
+}
+
+];
+
+questions.sort(()=>Math.random()-0.5);
+
+const form = document.getElementById("quizForm");
+
+questions.forEach((item,index)=>{
+
+let qHTML = `
+<div class="question">
+
+<h3>Q${index+1}. ${item.q}</h3>
+`;
+
+item.options.forEach((opt,optIndex)=>{
+
+qHTML += `
+<label class="option" id="q${index}o${optIndex}">
+<input type="radio" name="q${index}" value="${optIndex}">
+${opt}
+</label>
+`;
+
+});
+
+qHTML += `</div>`;
+
+form.innerHTML += qHTML;
+
+});
+
+function submitQuiz(){
+
+let score = 0;
+
+questions.forEach((item,index)=>{
+
+const selected =
+document.querySelector(`input[name="q${index}"]:checked`);
+
+const options =
+document.querySelectorAll(`input[name="q${index}"]`);
+
+options.forEach((opt,optIndex)=>{
+
+const label = opt.parentElement;
+
+if(optIndex === item.answer){
+
+label.classList.add("correct");
+
+}
+
+if(selected && opt.checked &&
+optIndex !== item.answer){
+
+label.classList.add("wrong");
+
+}
+
+});
+
+if(selected &&
+parseInt(selected.value) === item.answer){
+
+score++;
+
+}
+
+});
+
+document.getElementById("scoreBox").innerHTML =
+`Your Score: ${score} / 10`;
+
+}
+
+</script>
+
+</body>
+
+</html>
