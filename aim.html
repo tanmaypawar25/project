@@ -4,20 +4,342 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aim Page</title>
+
+    <title>Aim - Virtual Lab on Jacobian</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body{
+            background:#f4f7fb;
+            color:#333;
+        }
+
+        /* HEADER */
+
+        header{
+            background:linear-gradient(135deg,#1f2f46,#2c3e50);
+            color:white;
+            padding:20px 0;
+            box-shadow:0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .header-container{
+            width:90%;
+            margin:auto;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .logo{
+            display:flex;
+            align-items:center;
+            gap:15px;
+        }
+
+        .logo i{
+            font-size:35px;
+            color:#3498db;
+        }
+
+        .logo h1{
+            font-size:28px;
+            font-weight:600;
+        }
+
+        .logo span{
+            color:#3498db;
+        }
+
+        /* MAIN CONTENT */
+
+        .main-container{
+            width:90%;
+            max-width:1100px;
+            margin:40px auto;
+        }
+
+        .aim-card{
+            background:white;
+            border-radius:15px;
+            padding:40px;
+            box-shadow:0 8px 20px rgba(0,0,0,0.08);
+            animation:fadeIn 1s ease;
+        }
+
+        .aim-title{
+            display:flex;
+            align-items:center;
+            gap:15px;
+            margin-bottom:25px;
+        }
+
+        .aim-title i{
+            font-size:40px;
+            color:#3498db;
+        }
+
+        .aim-title h2{
+            font-size:34px;
+            color:#2c3e50;
+        }
+
+        .aim-content{
+            font-size:18px;
+            line-height:1.9;
+            color:#555;
+            text-align:justify;
+        }
+
+        .highlight{
+            color:#3498db;
+            font-weight:600;
+        }
+
+        /* INFO BOXES */
+
+        .info-section{
+            margin-top:40px;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:25px;
+        }
+
+        .info-box{
+            background:#f8fbff;
+            border-left:5px solid #3498db;
+            padding:25px;
+            border-radius:10px;
+            transition:0.3s;
+        }
+
+        .info-box:hover{
+            transform:translateY(-5px);
+            box-shadow:0 6px 15px rgba(0,0,0,0.08);
+        }
+
+        .info-box i{
+            font-size:28px;
+            color:#3498db;
+            margin-bottom:15px;
+        }
+
+        .info-box h3{
+            margin-bottom:10px;
+            color:#2c3e50;
+        }
+
+        .info-box p{
+            color:#666;
+            line-height:1.7;
+        }
+
+        /* BUTTON */
+
+        .btn-container{
+            margin-top:40px;
+            text-align:center;
+        }
+
+        .back-btn{
+            display:inline-block;
+            padding:14px 30px;
+            background:linear-gradient(to right,#3498db,#217dbb);
+            color:white;
+            text-decoration:none;
+            border-radius:8px;
+            font-size:17px;
+            transition:0.3s;
+        }
+
+        .back-btn:hover{
+            transform:translateY(-3px);
+            box-shadow:0 8px 18px rgba(52,152,219,0.3);
+        }
+
+        /* FOOTER */
+
+        footer{
+            text-align:center;
+            padding:20px;
+            color:#777;
+            margin-top:50px;
+        }
+
+        /* ANIMATION */
+
+        @keyframes fadeIn{
+
+            from{
+                opacity:0;
+                transform:translateY(20px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:768px){
+
+            .aim-card{
+                padding:25px;
+            }
+
+            .aim-title h2{
+                font-size:28px;
+            }
+
+            .aim-content{
+                font-size:16px;
+            }
+
+        }
+
+    </style>
+
 </head>
 
 <body>
 
-    <h1>Aim Page Working</h1>
+    <!-- HEADER -->
 
-    <p>
-        This is the Aim page of the Virtual Lab.
-    </p>
+    <header>
 
-    <a href="project.html">
-        Back to Project Page
-    </a>
+        <div class="header-container">
+
+            <div class="logo">
+
+                <i class="fas fa-flask"></i>
+
+                <h1>Virtual <span>Labs</span></h1>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- MAIN CONTENT -->
+
+    <div class="main-container">
+
+        <div class="aim-card">
+
+            <div class="aim-title">
+
+                <i class="fas fa-bullseye"></i>
+
+                <h2>Aim of the Experiment</h2>
+
+            </div>
+
+            <div class="aim-content">
+
+                <p>
+
+                    The aim of this virtual laboratory is to help students 
+                    understand the concept of 
+                    <span class="highlight">Jacobian</span> in Engineering Mathematics 
+                    through an interactive and visual learning approach.
+
+                    This experiment focuses on teaching how Jacobians are used 
+                    in the transformation of variables, coordinate conversion, 
+                    and solving multivariable calculus problems efficiently.
+
+                    By performing this experiment, students will develop a clear 
+                    understanding of partial derivatives, determinant formation, 
+                    and mathematical transformations used in various engineering 
+                    and scientific applications.
+
+                </p>
+
+            </div>
+
+            <!-- INFO BOXES -->
+
+            <div class="info-section">
+
+                <div class="info-box">
+
+                    <i class="fas fa-book-open"></i>
+
+                    <h3>Learning Objective</h3>
+
+                    <p>
+                        Understand the theory and applications of Jacobian in 
+                        variable transformations and multivariable calculus.
+                    </p>
+
+                </div>
+
+                <div class="info-box">
+
+                    <i class="fas fa-calculator"></i>
+
+                    <h3>Practical Understanding</h3>
+
+                    <p>
+                        Learn step-by-step calculation methods and improve 
+                        mathematical problem-solving skills.
+                    </p>
+
+                </div>
+
+                <div class="info-box">
+
+                    <i class="fas fa-laptop-code"></i>
+
+                    <h3>Interactive Learning</h3>
+
+                    <p>
+                        Explore concepts using virtual experiments and visual 
+                        representations for better understanding.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- BUTTON -->
+
+            <div class="btn-container">
+
+                <a href="project.html" class="back-btn">
+
+                    ← Back to Project Page
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            Virtual Labs © 2025 | Engineering Mathematics Department
+        </p>
+
+    </footer>
 
 </body>
 
