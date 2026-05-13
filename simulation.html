@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Simulation - Jacobian Virtual Lab</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.0/math.min.js"></script>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+        }
+
+        body{
+            background:#f4f7fb;
+            color:#333;
+        }
+
+        /* HEADER */
+
+        header{
+            background:linear-gradient(135deg,#1f2f46,#2c3e50);
+            color:white;
+            padding:20px 0;
+            box-shadow:0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .header-container{
+            width:90%;
+            margin:auto;
+            display:flex;
+            align-items:center;
+        }
+
+        .logo{
+            display:flex;
+            align-items:center;
+            gap:15px;
+        }
+
+        .logo i{
+            font-size:35px;
+            color:#3498db;
+        }
+
+        .logo h1{
+            font-size:30px;
+        }
+
+        .logo span{
+            color:#3498db;
+        }
+
+        /* MAIN SECTION */
+
+        .container{
+            width:90%;
+            max-width:1200px;
+            margin:40px auto;
+        }
+
+        .simulation-card{
+            background:white;
+            padding:40px;
+            border-radius:18px;
+            box-shadow:0 8px 20px rgba(0,0,0,0.08);
+            animation:fadeIn 1s ease;
+        }
+
+        .title-section{
+            text-align:center;
+            margin-bottom:40px;
+        }
+
+        .title-section h2{
+            font-size:40px;
+            color:#2c3e50;
+            margin-bottom:10px;
+        }
+
+        .title-section p{
+            color:#666;
+            font-size:18px;
+        }
+
+        /* INPUT AREA */
+
+        .input-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+            gap:25px;
+            margin-bottom:30px;
+        }
+
+        .input-box{
+            background:#f8fbff;
+            padding:25px;
+            border-radius:12px;
+            border-left:5px solid #3498db;
+        }
+
+        .input-box h3{
+            margin-bottom:15px;
+            color:#2c3e50;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin-top:10px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            font-size:16px;
+        }
+
+        /* BUTTON */
+
+        .btn-container{
+            text-align:center;
+            margin-top:30px;
+        }
+
+        .calculate-btn{
+            padding:15px 40px;
+            border:none;
+            border-radius:10px;
+            background:linear-gradient(to right,#3498db,#217dbb);
+            color:white;
+            font-size:18px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .calculate-btn:hover{
+            transform:translateY(-3px);
+            box-shadow:0 8px 18px rgba(52,152,219,0.3);
+        }
+
+        /* OUTPUT */
+
+        .output-section{
+            margin-top:40px;
+            background:#eef6ff;
+            padding:30px;
+            border-radius:15px;
+            border-left:5px solid #3498db;
+        }
+
+        .output-section h3{
+            margin-bottom:20px;
+            color:#2c3e50;
+        }
+
+        .output-box{
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            margin-top:15px;
+            overflow-x:auto;
+            font-size:18px;
+            line-height:1.8;
+        }
+
+        .formula{
+            font-size:24px;
+            color:#1f2f46;
+            font-weight:bold;
+        }
+
+        /* INFO CARDS */
+
+        .info-grid{
+            margin-top:40px;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:20px;
+        }
+
+        .info-card{
+            background:#f8fbff;
+            padding:25px;
+            border-radius:12px;
+            border-left:5px solid #3498db;
+            transition:0.3s;
+        }
+
+        .info-card:hover{
+            transform:translateY(-5px);
+            box-shadow:0 6px 15px rgba(0,0,0,0.08);
+        }
+
+        .info-card i{
+            font-size:30px;
+            color:#3498db;
+            margin-bottom:15px;
+        }
+
+        .info-card h3{
+            margin-bottom:10px;
+            color:#2c3e50;
+        }
+
+        .info-card p{
+            color:#666;
+            line-height:1.7;
+        }
+
+        /* BACK BUTTON */
+
+        .back-container{
+            text-align:center;
+            margin-top:40px;
+        }
+
+        .back-btn{
+            text-decoration:none;
+            padding:14px 30px;
+            background:#3498db;
+            color:white;
+            border-radius:8px;
+            font-size:17px;
+            transition:0.3s;
+        }
+
+        .back-btn:hover{
+            background:#217dbb;
+        }
+
+        footer{
+            text-align:center;
+            padding:20px;
+            margin-top:40px;
+            color:#777;
+        }
+
+        @keyframes fadeIn{
+
+            from{
+                opacity:0;
+                transform:translateY(20px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="header-container">
+
+            <div class="logo">
+
+                <i class="fas fa-flask"></i>
+
+                <h1>Virtual <span>Labs</span></h1>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- MAIN CONTENT -->
+
+    <div class="container">
+
+        <div class="simulation-card">
+
+            <div class="title-section">
+
+                <h2>Jacobian Simulation</h2>
+
+                <p>
+                    Enter variables and functions to calculate the Jacobian Matrix.
+                </p>
+
+            </div>
+
+            <!-- INPUTS -->
+
+            <div class="input-grid">
+
+                <div class="input-box">
+
+                    <h3>Variables</h3>
+
+                    <input type="text" id="variables"
+                    placeholder="Example: x y">
+
+                </div>
+
+                <div class="input-box">
+
+                    <h3>Functions</h3>
+
+                    <input type="text" id="functions"
+                    placeholder="Example: x^2+y , x*y">
+
+                </div>
+
+            </div>
+
+            <!-- BUTTON -->
+
+            <div class="btn-container">
+
+                <button class="calculate-btn" onclick="calculateJacobian()">
+
+                    Calculate Jacobian
+
+                </button>
+
+            </div>
+
+            <!-- OUTPUT -->
+
+            <div class="output-section">
+
+                <h3>Simulation Output</h3>
+
+                <div class="output-box" id="output">
+
+                    Your Jacobian Matrix will appear here...
+
+                </div>
+
+            </div>
+
+            <!-- INFO CARDS -->
+
+            <div class="info-grid">
+
+                <div class="info-card">
+
+                    <i class="fas fa-calculator"></i>
+
+                    <h3>Automatic Differentiation</h3>
+
+                    <p>
+                        The simulation automatically calculates partial derivatives 
+                        for each function with respect to each variable.
+                    </p>
+
+                </div>
+
+                <div class="info-card">
+
+                    <i class="fas fa-chart-line"></i>
+
+                    <h3>Transformation Analysis</h3>
+
+                    <p>
+                        Understand how variables transform and how Jacobians are 
+                        used in coordinate conversions.
+                    </p>
+
+                </div>
+
+                <div class="info-card">
+
+                    <i class="fas fa-laptop-code"></i>
+
+                    <h3>Interactive Learning</h3>
+
+                    <p>
+                        Experiment with different functions and instantly view 
+                        the resulting Jacobian matrix.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- BACK BUTTON -->
+
+            <div class="back-container">
+
+                <a href="project.html" class="back-btn">
+
+                    ← Back to Project Page
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+
+        <p>
+            Virtual Labs © 2025 | Engineering Mathematics Department
+        </p>
+
+    </footer>
+
+<script>
+
+function derivative(expr, variable){
+
+    return math.derivative(expr, variable).toString();
+
+}
+
+function calculateJacobian(){
+
+    const varsInput = document.getElementById("variables").value.trim();
+
+    const funcsInput = document.getElementById("functions").value.trim();
+
+    if(varsInput === "" || funcsInput === ""){
+
+        alert("Please enter variables and functions.");
+
+        return;
+
+    }
+
+    const variables = varsInput.split(" ");
+
+    const functions = funcsInput.split(",");
+
+    let matrixHTML = "<div class='formula'>J = [<br>";
+
+    for(let i=0; i<functions.length; i++){
+
+        matrixHTML += "[ ";
+
+        for(let j=0; j<variables.length; j++){
+
+            let deriv = derivative(functions[i], variables[j]);
+
+            matrixHTML += deriv;
+
+            if(j < variables.length - 1){
+
+                matrixHTML += " , ";
+
+            }
+
+        }
+
+        matrixHTML += " ]<br>";
+
+    }
+
+    matrixHTML += "]</div>";
+
+    document.getElementById("output").innerHTML = matrixHTML;
+
+}
+
+</script>
+
+</body>
+
+</html>
