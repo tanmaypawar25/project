@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Feedback - Jacobian Virtual Lab</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#333;
+}
+
+/* HEADER */
+
+header{
+    background:linear-gradient(135deg,#1f2f46,#2c3e50);
+    color:white;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+header h1{
+    font-size:34px;
+}
+
+header span{
+    color:#3498db;
+}
+
+/* MAIN CONTAINER */
+
+.container{
+    width:90%;
+    max-width:900px;
+    margin:40px auto;
+}
+
+.feedback-box{
+    background:white;
+    padding:45px;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* TITLE */
+
+.title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.title h2{
+    font-size:42px;
+    color:#2c3e50;
+}
+
+.title p{
+    margin-top:12px;
+    color:#666;
+    font-size:18px;
+    line-height:1.7;
+}
+
+/* FORM */
+
+.form-group{
+    margin-bottom:30px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:12px;
+    font-size:20px;
+    color:#2c3e50;
+    font-weight:600;
+}
+
+/* STAR RATING */
+
+.rating{
+    display:flex;
+    flex-direction:row-reverse;
+    justify-content:flex-end;
+    gap:10px;
+}
+
+.rating input{
+    display:none;
+}
+
+.rating label{
+    font-size:40px;
+    color:#ccc;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.rating input:checked ~ label{
+    color:#f1c40f;
+}
+
+.rating label:hover,
+.rating label:hover ~ label{
+    color:#f1c40f;
+}
+
+/* TEXTAREA */
+
+textarea{
+    width:100%;
+    min-height:180px;
+    padding:18px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:16px;
+    resize:vertical;
+    outline:none;
+    transition:0.3s;
+}
+
+textarea:focus{
+    border-color:#3498db;
+    box-shadow:0 0 10px rgba(52,152,219,0.2);
+}
+
+/* BUTTON */
+
+.submit-btn{
+    display:inline-block;
+    padding:15px 35px;
+    background:#3498db;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.submit-btn:hover{
+    background:#217dbb;
+    transform:translateY(-3px);
+}
+
+.button-container{
+    text-align:center;
+    margin-top:20px;
+}
+
+/* THANK YOU MESSAGE */
+
+.thank-you{
+    display:none;
+    margin-top:35px;
+    padding:25px;
+    background:#eefaf0;
+    border-left:5px solid #2ecc71;
+    border-radius:12px;
+    color:#2c3e50;
+    text-align:center;
+    animation:fadeIn 0.8s ease;
+}
+
+.thank-you i{
+    font-size:50px;
+    color:#2ecc71;
+    margin-bottom:15px;
+}
+
+/* BACK BUTTON */
+
+.back-container{
+    text-align:center;
+    margin-top:40px;
+}
+
+.back-btn{
+    display:inline-block;
+    padding:14px 30px;
+    background:#3498db;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    background:#217dbb;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:25px;
+    margin-top:40px;
+    color:#777;
+}
+
+/* ANIMATION */
+
+@keyframes fadeIn{
+
+from{
+    opacity:0;
+    transform:translateY(20px);
+}
+
+to{
+    opacity:1;
+    transform:translateY(0);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Virtual <span>Labs</span></h1>
+
+</header>
+
+<div class="container">
+
+<div class="feedback-box">
+
+<div class="title">
+
+<h2>Feedback Form</h2>
+
+<p>
+Your feedback helps us improve the Virtual Lab experience 
+and create better interactive learning modules.
+</p>
+
+</div>
+
+<!-- FORM -->
+
+<form id="feedbackForm">
+
+<div class="form-group">
+
+<label>
+How would you rate your experience?
+</label>
+
+<div class="rating">
+
+<input type="radio" id="star5" name="rating">
+<label for="star5">★</label>
+
+<input type="radio" id="star4" name="rating">
+<label for="star4">★</label>
+
+<input type="radio" id="star3" name="rating">
+<label for="star3">★</label>
+
+<input type="radio" id="star2" name="rating">
+<label for="star2">★</label>
+
+<input type="radio" id="star1" name="rating">
+<label for="star1">★</label>
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>
+What was your key takeaway from this Virtual Lab?
+</label>
+
+<textarea
+placeholder="Write your learning experience, suggestions, or understanding about Jacobians here..."
+required>
+</textarea>
+
+</div>
+
+<div class="button-container">
+
+<button type="submit" class="submit-btn">
+
+Submit Feedback
+
+</button>
+
+</div>
+
+</form>
+
+<!-- THANK YOU -->
+
+<div class="thank-you" id="thankYou">
+
+<i class="fas fa-check-circle"></i>
+
+<h2>Thank You!</h2>
+
+<p>
+Your feedback has been submitted successfully.
+</p>
+
+</div>
+
+<!-- BACK BUTTON -->
+
+<div class="back-container">
+
+<a href="project.html" class="back-btn">
+
+← Back to Project
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+<p>
+Virtual Labs © 2025 | Engineering Mathematics Department
+</p>
+
+</footer>
+
+<script>
+
+const form = document.getElementById("feedbackForm");
+
+form.addEventListener("submit", function(event){
+
+event.preventDefault();
+
+document.getElementById("thankYou").style.display = "block";
+
+form.reset();
+
+window.scrollTo({
+top:document.body.scrollHeight,
+behavior:"smooth"
+});
+
+});
+
+</script>
+
+</body>
+
+</html>
