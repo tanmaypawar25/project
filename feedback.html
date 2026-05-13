@@ -4,9 +4,10 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Feedback - Virtual Lab</title>
+<title>Feedback - Jacobian Virtual Lab</title>
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -30,7 +31,7 @@ body{
 header{
     background:linear-gradient(135deg,#1f2f46,#2c3e50);
     color:white;
-    padding:22px;
+    padding:20px;
     text-align:center;
     box-shadow:0 4px 10px rgba(0,0,0,0.15);
 }
@@ -47,7 +48,7 @@ header span{
 
 .container{
     width:90%;
-    max-width:950px;
+    max-width:900px;
     margin:40px auto;
 }
 
@@ -66,15 +67,15 @@ header span{
 }
 
 .title h2{
-    font-size:40px;
+    font-size:42px;
     color:#2c3e50;
-    margin-bottom:12px;
 }
 
 .title p{
+    margin-top:12px;
     color:#666;
-    line-height:1.8;
-    font-size:17px;
+    font-size:18px;
+    line-height:1.7;
 }
 
 /* FORM */
@@ -86,36 +87,9 @@ header span{
 .form-group label{
     display:block;
     margin-bottom:12px;
-    font-size:19px;
-    font-weight:600;
+    font-size:20px;
     color:#2c3e50;
-}
-
-/* INPUT */
-
-input[type="text"],
-select,
-textarea{
-    width:100%;
-    padding:16px;
-    border-radius:10px;
-    border:1px solid #ccc;
-    font-size:16px;
-    outline:none;
-    transition:0.3s;
-    background:white;
-}
-
-textarea{
-    min-height:140px;
-    resize:vertical;
-}
-
-input[type="text"]:focus,
-select:focus,
-textarea:focus{
-    border-color:#3498db;
-    box-shadow:0 0 10px rgba(52,152,219,0.2);
+    font-weight:600;
 }
 
 /* STAR RATING */
@@ -124,7 +98,7 @@ textarea:focus{
     display:flex;
     flex-direction:row-reverse;
     justify-content:flex-end;
-    gap:8px;
+    gap:10px;
 }
 
 .rating input{
@@ -138,27 +112,45 @@ textarea:focus{
     transition:0.3s;
 }
 
-.rating label:hover,
-.rating label:hover ~ label,
 .rating input:checked ~ label{
     color:#f1c40f;
 }
 
-/* BUTTON */
-
-.button-container{
-    text-align:center;
-    margin-top:35px;
+.rating label:hover,
+.rating label:hover ~ label{
+    color:#f1c40f;
 }
 
+/* TEXTAREA */
+
+textarea{
+    width:100%;
+    min-height:180px;
+    padding:18px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:16px;
+    resize:vertical;
+    outline:none;
+    transition:0.3s;
+}
+
+textarea:focus{
+    border-color:#3498db;
+    box-shadow:0 0 10px rgba(52,152,219,0.2);
+}
+
+/* BUTTON */
+
 .submit-btn{
+    display:inline-block;
+    padding:15px 35px;
     background:#3498db;
     color:white;
     border:none;
-    padding:15px 35px;
-    font-size:18px;
-    border-radius:10px;
+    border-radius:8px;
     cursor:pointer;
+    font-size:18px;
     transition:0.3s;
 }
 
@@ -167,7 +159,12 @@ textarea:focus{
     transform:translateY(-3px);
 }
 
-/* THANK YOU */
+.button-container{
+    text-align:center;
+    margin-top:20px;
+}
+
+/* THANK YOU MESSAGE */
 
 .thank-you{
     display:none;
@@ -176,18 +173,15 @@ textarea:focus{
     background:#eefaf0;
     border-left:5px solid #2ecc71;
     border-radius:12px;
+    color:#2c3e50;
     text-align:center;
+    animation:fadeIn 0.8s ease;
 }
 
 .thank-you i{
     font-size:50px;
     color:#2ecc71;
     margin-bottom:15px;
-}
-
-.thank-you h2{
-    margin-bottom:10px;
-    color:#2c3e50;
 }
 
 /* BACK BUTTON */
@@ -199,11 +193,11 @@ textarea:focus{
 
 .back-btn{
     display:inline-block;
-    padding:14px 28px;
+    padding:14px 30px;
     background:#3498db;
     color:white;
     text-decoration:none;
-    border-radius:10px;
+    border-radius:8px;
     transition:0.3s;
 }
 
@@ -220,20 +214,18 @@ footer{
     color:#777;
 }
 
-/* MOBILE */
+/* ANIMATION */
 
-@media(max-width:768px){
+@keyframes fadeIn{
 
-.feedback-box{
-    padding:25px;
+from{
+    opacity:0;
+    transform:translateY(20px);
 }
 
-.title h2{
-    font-size:30px;
-}
-
-.rating label{
-    font-size:32px;
+to{
+    opacity:1;
+    transform:translateY(0);
 }
 
 }
@@ -259,27 +251,21 @@ footer{
 <h2>Feedback Form</h2>
 
 <p>
-Your feedback helps us improve the Virtual Lab experience
+Your feedback helps us improve the Virtual Lab experience 
 and create better interactive learning modules.
 </p>
 
 </div>
 
+<!-- FORM -->
+
 <form id="feedbackForm">
 
 <div class="form-group">
 
-<label>Enter Your Name</label>
-
-<input type="text"
-placeholder="Enter your full name"
-required>
-
-</div>
-
-<div class="form-group">
-
-<label>How would you rate your overall experience?</label>
+<label>
+How would you rate your experience?
+</label>
 
 <div class="rating">
 
@@ -304,96 +290,14 @@ required>
 
 <div class="form-group">
 
-<label>Was the Aim section clear and informative?</label>
+<label>
+What was your key takeaway from this Virtual Lab?
+</label>
 
 <textarea
-placeholder="Share your opinion about the Aim section..."
-required></textarea>
-
-</div>
-
-<div class="form-group">
-
-<label>Was the Theory section easy to understand?</label>
-
-<textarea
-placeholder="Tell us about your experience with the theory content..."
-required></textarea>
-
-</div>
-
-<div class="form-group">
-
-<label>How helpful was the Jacobian simulation module?</label>
-
-<textarea
-placeholder="Describe your experience using the simulation..."
-required></textarea>
-
-</div>
-
-<div class="form-group">
-
-<label>Did the Pretest and Posttest improve your understanding?</label>
-
-<textarea
-placeholder="Share your learning experience from the assessments..."
-required></textarea>
-
-</div>
-
-<div class="form-group">
-
-<label>Which section of the Virtual Lab did you find most useful?</label>
-
-<select required>
-
-<option value="">Select an option</option>
-
-<option>Aim Section</option>
-<option>Theory Section</option>
-<option>Simulation Module</option>
-<option>Pretest</option>
-<option>Posttest</option>
-<option>References</option>
-
-</select>
-
-</div>
-
-<div class="form-group">
-
-<label>Would you recommend this Virtual Lab to other students?</label>
-
-<select required>
-
-<option value="">Select an option</option>
-
-<option>Yes</option>
-<option>No</option>
-<option>Maybe</option>
-
-</select>
-
-</div>
-
-<div class="form-group">
-
-<label>What improvements would you like to see in this Virtual Lab?</label>
-
-<textarea
-placeholder="Write your suggestions for improving the project..."
-required></textarea>
-
-</div>
-
-<div class="form-group">
-
-<label>What was your key takeaway from this Virtual Lab?</label>
-
-<textarea
-placeholder="Write your learning experience and understanding about Jacobians here..."
-required></textarea>
+placeholder="Write your learning experience, suggestions, or understanding about Jacobians here..."
+required>
+</textarea>
 
 </div>
 
@@ -409,15 +313,21 @@ Submit Feedback
 
 </form>
 
+<!-- THANK YOU -->
+
 <div class="thank-you" id="thankYou">
 
 <i class="fas fa-check-circle"></i>
 
 <h2>Thank You!</h2>
 
-<p>Your feedback has been submitted successfully.</p>
+<p>
+Your feedback has been submitted successfully.
+</p>
 
 </div>
+
+<!-- BACK BUTTON -->
 
 <div class="back-container">
 
