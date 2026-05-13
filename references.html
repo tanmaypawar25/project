@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>References - Jacobian Virtual Lab</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#333;
+}
+
+/* HEADER */
+
+header{
+    background:linear-gradient(135deg,#1f2f46,#2c3e50);
+    color:white;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+header h1{
+    font-size:34px;
+}
+
+header span{
+    color:#3498db;
+}
+
+/* MAIN CONTAINER */
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:40px auto;
+}
+
+.reference-box{
+    background:white;
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* TITLE */
+
+.title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.title h2{
+    font-size:42px;
+    color:#2c3e50;
+}
+
+.title p{
+    margin-top:12px;
+    color:#666;
+    font-size:18px;
+    line-height:1.7;
+}
+
+/* BOOK SECTION */
+
+.book-card{
+    background:#eef6ff;
+    padding:35px;
+    border-radius:16px;
+    border-left:6px solid #3498db;
+    margin-bottom:40px;
+}
+
+.book-card i{
+    font-size:45px;
+    color:#3498db;
+    margin-bottom:20px;
+}
+
+.book-card h3{
+    font-size:30px;
+    margin-bottom:15px;
+    color:#2c3e50;
+}
+
+.book-card p{
+    color:#555;
+    line-height:1.8;
+    margin-bottom:15px;
+    font-size:17px;
+}
+
+.highlight{
+    color:#3498db;
+    font-weight:bold;
+}
+
+/* BUTTONS */
+
+.button-group{
+    margin-top:25px;
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 28px;
+    background:#3498db;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    transition:0.3s;
+    font-size:16px;
+}
+
+.btn:hover{
+    background:#217dbb;
+    transform:translateY(-3px);
+}
+
+/* PDF VIEWER */
+
+.pdf-section{
+    margin-top:50px;
+}
+
+.pdf-section h3{
+    margin-bottom:20px;
+    font-size:30px;
+    color:#2c3e50;
+}
+
+.pdf-container{
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 8px 18px rgba(0,0,0,0.08);
+    border:2px solid #dbe9ff;
+}
+
+iframe{
+    width:100%;
+    height:800px;
+    border:none;
+}
+
+/* TOPICS */
+
+.topic-section{
+    margin-top:50px;
+    background:#f8fbff;
+    padding:30px;
+    border-radius:16px;
+    border-left:5px solid #3498db;
+}
+
+.topic-section h3{
+    margin-bottom:20px;
+    color:#2c3e50;
+}
+
+.topic-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+}
+
+.topic-card{
+    background:white;
+    padding:18px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.05);
+    transition:0.3s;
+}
+
+.topic-card:hover{
+    transform:translateY(-5px);
+}
+
+.topic-card i{
+    color:#3498db;
+    margin-right:10px;
+}
+
+/* BACK BUTTON */
+
+.back-container{
+    text-align:center;
+    margin-top:45px;
+}
+
+.back-btn{
+    display:inline-block;
+    padding:14px 30px;
+    background:#3498db;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    background:#217dbb;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:25px;
+    margin-top:40px;
+    color:#777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Virtual <span>Labs</span></h1>
+
+</header>
+
+<div class="container">
+
+<div class="reference-box">
+
+<div class="title">
+
+<h2>References & Study Material</h2>
+
+<p>
+This section provides useful study resources, books, and reference 
+materials to understand Jacobians, coordinate transformations, 
+partial differentiation, and engineering mathematics concepts.
+</p>
+
+</div>
+
+<!-- BOOK CARD -->
+
+<div class="book-card">
+
+<i class="fas fa-book"></i>
+
+<h3>Numerical Methods in Engineering & Science</h3>
+
+<p>
+
+One of the most recommended books for Engineering Mathematics by
+<span class="highlight">B. S. Grewal</span>.
+
+</p>
+
+<p>
+
+This book contains detailed explanations, numerical methods, 
+approximation techniques, multivariable calculus concepts, and 
+advanced mathematical applications useful for Jacobians.
+
+</p>
+
+<div class="button-group">
+
+<a href="Numerical-methods-in-engineerin-b-s-grewalpdf.pdf"
+target="_blank"
+class="btn">
+
+<i class="fas fa-eye"></i>
+ Open PDF
+
+</a>
+
+<a href="Numerical-methods-in-engineerin-b-s-grewalpdf.pdf"
+download
+class="btn">
+
+<i class="fas fa-download"></i>
+ Download PDF
+
+</a>
+
+</div>
+
+</div>
+
+<!-- PDF VIEWER -->
+
+<div class="pdf-section">
+
+<h3>Embedded PDF Viewer</h3>
+
+<div class="pdf-container">
+
+<iframe
+src="Numerical-methods-in-engineerin-b-s-grewalpdf.pdf">
+</iframe>
+
+</div>
+
+</div>
+
+<!-- TOPICS -->
+
+<div class="topic-section">
+
+<h3>Topics Covered</h3>
+
+<div class="topic-grid">
+
+<div class="topic-card">
+<i class="fas fa-check-circle"></i>
+Partial Differentiation
+</div>
+
+<div class="topic-card">
+<i class="fas fa-check-circle"></i>
+Jacobian Matrix
+</div>
+
+<div class="topic-card">
+<i class="fas fa-check-circle"></i>
+Coordinate Transformation
+</div>
+
+<div class="topic-card">
+<i class="fas fa-check-circle"></i>
+Engineering Mathematics
+</div>
+
+<div class="topic-card">
+<i class="fas fa-check-circle"></i>
+Numerical Methods
+</div>
+
+<div class="topic-card">
+<i class="fas fa-check-circle"></i>
+Approximation Techniques
+</div>
+
+<div class="topic-card">
+<i class="fas fa-check-circle"></i>
+Error Computation
+</div>
+
+<div class="topic-card">
+<i class="fas fa-check-circle"></i>
+Multivariable Calculus
+</div>
+
+</div>
+
+</div>
+
+<!-- BACK BUTTON -->
+
+<div class="back-container">
+
+<a href="project.html" class="back-btn">
+
+← Back to Project
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+<p>
+Virtual Labs © 2025 | Engineering Mathematics Department
+</p>
+
+</footer>
+
+</body>
+
+</html>
