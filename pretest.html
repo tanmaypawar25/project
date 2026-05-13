@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pretest - Virtual Lab on Jacobian</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+        }
+
+        body{
+            background:#f4f7fb;
+            color:#333;
+        }
+
+        header{
+            background:linear-gradient(135deg,#1f2f46,#2c3e50);
+            color:white;
+            padding:20px 0;
+        }
+
+        .header-container{
+            width:90%;
+            margin:auto;
+            display:flex;
+            align-items:center;
+        }
+
+        .logo{
+            display:flex;
+            align-items:center;
+            gap:15px;
+        }
+
+        .logo i{
+            font-size:35px;
+            color:#3498db;
+        }
+
+        .logo h1 span{
+            color:#3498db;
+        }
+
+        .container{
+            width:90%;
+            max-width:1000px;
+            margin:40px auto;
+        }
+
+        .quiz-box{
+            background:white;
+            padding:40px;
+            border-radius:15px;
+            box-shadow:0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .quiz-title{
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        .quiz-title h2{
+            font-size:36px;
+            color:#2c3e50;
+        }
+
+        .quiz-title p{
+            color:#666;
+            margin-top:10px;
+        }
+
+        .question{
+            margin-bottom:30px;
+            padding:20px;
+            border-radius:10px;
+            background:#f8fbff;
+            border-left:5px solid #3498db;
+        }
+
+        .question h3{
+            margin-bottom:15px;
+            color:#2c3e50;
+        }
+
+        .option{
+            margin:10px 0;
+            padding:10px;
+            border-radius:6px;
+            transition:0.3s;
+        }
+
+        .option:hover{
+            background:#eef6ff;
+        }
+
+        .correct{
+            background:#d4edda !important;
+            border:2px solid green;
+        }
+
+        .wrong{
+            background:#f8d7da !important;
+            border:2px solid red;
+        }
+
+        .submit-btn{
+            display:block;
+            margin:30px auto;
+            padding:14px 35px;
+            border:none;
+            border-radius:8px;
+            background:linear-gradient(to right,#3498db,#217dbb);
+            color:white;
+            font-size:18px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .submit-btn:hover{
+            transform:translateY(-3px);
+            box-shadow:0 8px 18px rgba(52,152,219,0.3);
+        }
+
+        .score-box{
+            text-align:center;
+            margin-top:30px;
+            font-size:24px;
+            font-weight:bold;
+            color:#2c3e50;
+        }
+
+        .back-btn{
+            display:inline-block;
+            margin-top:30px;
+            text-decoration:none;
+            color:white;
+            background:#3498db;
+            padding:12px 25px;
+            border-radius:8px;
+        }
+
+        .back-container{
+            text-align:center;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="header-container">
+
+            <div class="logo">
+
+                <i class="fas fa-flask"></i>
+
+                <h1>Virtual <span>Labs</span></h1>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <div class="container">
+
+        <div class="quiz-box">
+
+            <div class="quiz-title">
+
+                <h2>Pretest on Jacobian</h2>
+
+                <p>
+                    Test your basic understanding of Jacobian and transformations.
+                </p>
+
+            </div>
+
+            <form id="quizForm"></form>
+
+            <button class="submit-btn" onclick="submitQuiz()">
+
+                Submit Test
+
+            </button>
+
+            <div class="score-box" id="scoreBox"></div>
+
+            <div class="back-container">
+
+                <a href="project.html" class="back-btn">
+
+                    ← Back to Project Page
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+<script>
+
+const questions = [
+
+{
+question:"What is a Jacobian mainly used for?",
+options:[
+"Matrix multiplication",
+"Variable transformation",
+"Integration only",
+"Finding roots"
+],
+answer:1
+},
+
+{
+question:"Jacobian is formed using:",
+options:[
+"Integrals",
+"Partial derivatives",
+"Vectors only",
+"Limits"
+],
+answer:1
+},
+
+{
+question:"The Jacobian helps in transformation between:",
+options:[
+"Coordinate systems",
+"Languages",
+"Algorithms",
+"Networks"
+],
+answer:0
+},
+
+{
+question:"What does the Jacobian measure?",
+options:[
+"Area or volume transformation",
+"Speed",
+"Current",
+"Pressure"
+],
+answer:0
+},
+
+{
+question:"If x=u²-v² and y=2uv, the Jacobian is:",
+options:[
+"2(u²+v²)",
+"4(u²+v²)",
+"1",
+"0"
+],
+answer:1
+},
+
+{
+question:"Jacobian is widely used in:",
+options:[
+"Engineering Mathematics",
+"Biology only",
+"History",
+"Economics only"
+],
+answer:0
+},
+
+{
+question:"Which derivatives are used in Jacobian?",
+options:[
+"Ordinary derivatives",
+"Partial derivatives",
+"Chain derivatives",
+"Inverse derivatives"
+],
+answer:1
+},
+
+{
+question:"Jacobian is important in solving:",
+options:[
+"Multiple integrals",
+"Grammar",
+"Operating systems",
+"Animations only"
+],
+answer:0
+},
+
+{
+question:"The determinant in Jacobian is calculated from:",
+options:[
+"Functions and variables",
+"Only constants",
+"Only matrices",
+"Graphs only"
+],
+answer:0
+},
+
+{
+question:"Jacobian transformations are useful in:",
+options:[
+"Robotics and graphics",
+"Cooking",
+"Sports only",
+"Music only"
+],
+answer:0
+}
+
+];
+
+questions.sort(() => Math.random() - 0.5);
+
+const quizForm = document.getElementById("quizForm");
+
+questions.forEach((q,index)=>{
+
+const questionDiv = document.createElement("div");
+questionDiv.classList.add("question");
+
+let html = `<h3>Q${index+1}. ${q.question}</h3>`;
+
+q.options.forEach((option,i)=>{
+
+html += `
+<div class="option">
+<label>
+<input type="radio" name="q${index}" value="${i}">
+${option}
+</label>
+</div>
+`;
+
+});
+
+questionDiv.innerHTML = html;
+
+quizForm.appendChild(questionDiv);
+
+});
+
+function submitQuiz(){
+
+event.preventDefault();
+
+let score = 0;
+
+questions.forEach((q,index)=>{
+
+const selected = document.querySelector(`input[name="q${index}"]:checked`);
+
+const options = document.querySelectorAll(`input[name="q${index}"]`);
+
+options.forEach((opt,i)=>{
+
+const parent = opt.parentElement.parentElement;
+
+if(i === q.answer){
+
+parent.classList.add("correct");
+
+}
+
+if(selected && parseInt(selected.value) === i && i !== q.answer){
+
+parent.classList.add("wrong");
+
+}
+
+});
+
+if(selected && parseInt(selected.value) === q.answer){
+
+score++;
+
+}
+
+});
+
+document.getElementById("scoreBox").innerHTML =
+`Your Score: ${score} / ${questions.length}`;
+
+window.scrollTo({
+top:document.body.scrollHeight,
+behavior:"smooth"
+});
+
+}
+
+</script>
+
+</body>
+
+</html>
